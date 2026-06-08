@@ -85,7 +85,10 @@ export default async function DashboardPage() {
           className="text-3xl font-bold mb-1"
           style={{ color: '#3D2B1A' }}
         >
-          Good morning, {profile?.full_name?.split(' ')[0]}
+          {(() => {
+            const h = new Date().getHours()
+            return h < 12 ? 'Good morning' : h < 17 ? 'Good afternoon' : 'Good evening'
+          })()}, {profile?.full_name?.split(' ')[0]}
         </h1>
         <p className="text-sm" style={{ color: '#9B8070' }}>
           Here's what's happening with your hiring pipeline today.
