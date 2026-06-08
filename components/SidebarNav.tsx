@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import {
   LayoutDashboard, Briefcase, Users, KanbanSquare,
-  Shield, LogOut, ChevronLeft, ChevronRight, X,
+  Shield, LogOut, ChevronLeft, ChevronRight, X, Crown,
 } from 'lucide-react'
 import type { Profile } from '@/types'
 
@@ -26,6 +26,10 @@ const adminItems = [
   { href: '/dashboard/admin', label: 'Admin', icon: Shield },
 ]
 
+const superadminItems = [
+  { href: '/dashboard/superadmin', label: 'Superadmin', icon: Crown },
+]
+
 export default function SidebarNav({ profile, mobileOpen = false, onMobileClose }: Props) {
   const pathname = usePathname()
   const router   = useRouter()
@@ -38,8 +42,13 @@ export default function SidebarNav({ profile, mobileOpen = false, onMobileClose 
     router.push('/auth/login')
   }
 
+  const isSuperAdmin = profile?.role === 'superadmin'
   const isAdmin = profile?.role === 'admin'
-  const items   = isAdmin ? [...navItems, ...adminItems] : navItems
+  const items = isSuperAdmin
+    ? [...navItems, ...adminItems, ...superadminItems]
+    : isAdmin
+    ? [...navItems, ...adminItems]
+    : navItems
 
   const inner = (isMobile: boolean) => {
     const showLabel = isMobile || !collapsed
@@ -133,7 +142,11 @@ export default function SidebarNav({ profile, mobileOpen = false, onMobileClose 
                   {profile?.full_name || 'User'}
                 </p>
                 <p className="text-xs truncate" style={{ color: '#9B7A5A' }}>
-                  {isAdmin ? 'Admin' : profile?.company_name || 'Customer'}
+                    {isSuperAdmin
+                      ? 'Superadmin'
+                      : isAdmin
+                      ? 'Admin'
+                      : profile?.company_name || 'Customer'}
                 </p>
               </div>
             </div>
