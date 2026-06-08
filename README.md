@@ -14,7 +14,7 @@ A mini **Applicant Tracking System** to streamline hiring workflows, manage cand
 - **Email Notifications** – Automatic updates to candidates and team members
 - **Resume Storage** – Upload and organize CVs and documents
 - **Internal Notes & Feedback** – Collaborate on candidate evaluations
-- (pending) **API-First Design** – Easy integration with existing HR tools
+- [TO-DO] **API-First Design** – Easy integration with existing HR tools
 
 ## Tech Stack
 
@@ -45,7 +45,7 @@ cd devotion-ats
 npm install
 
 # Set up environment variables
-cp .env.example .env
+cp .env.local
 
 # Run database migrations
 npm run migrate
