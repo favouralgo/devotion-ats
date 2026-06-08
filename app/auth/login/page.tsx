@@ -44,11 +44,11 @@ export default function LoginPage() {
       >
         {/* Decorative circles */}
         <div
-          className="absolute top-[-80px] right-[-80px] w-[360px] h-[360px] rounded-full opacity-20"
+          className="absolute -top-20 -right-20 w-90 h-90 rounded-full opacity-20"
           style={{ background: 'radial-gradient(circle, #FFD970, transparent)' }}
         />
         <div
-          className="absolute bottom-[-60px] left-[-60px] w-[280px] h-[280px] rounded-full opacity-15"
+          className="absolute -bottom-15 -left-15 w-70 h-70 rounded-full opacity-15"
           style={{ background: 'radial-gradient(circle, #FFF8F3, transparent)' }}
         />
 
@@ -72,7 +72,7 @@ export default function LoginPage() {
             <em>faster.</em>
           </h1>
           <p className="text-white/80 text-lg leading-relaxed max-w-sm">
-            Track every candidate, across every stage — with AI-powered insights
+            Track every candidate, across every stage - with AI-powered insights
             that help you make better hiring decisions.
           </p>
 
@@ -84,7 +84,7 @@ export default function LoginPage() {
             ].map((f) => (
               <div key={f} className="flex items-center gap-3">
                 <div
-                  className="w-2 h-2 rounded-full flex-shrink-0"
+                  className="w-2 h-2 rounded-full shrink-0"
                   style={{ background: '#FFD970' }}
                 />
                 <span className="text-white/90 text-sm font-medium">{f}</span>

@@ -33,7 +33,7 @@ interface Candidate {
   stage: Stage | null
 }
 
-// ─── Candidate Card ───────────────────────────────────────────────────────────
+// Candidate Card 
 
 function CandidateCard({
   candidate,
@@ -56,7 +56,7 @@ function CandidateCard({
       {/* Name + avatar */}
       <div className="flex items-start gap-2 mb-2">
         <div
-          className="w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0"
+          className="w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold shrink-0"
           style={{
             background: 'linear-gradient(135deg, #FCDCC7, #F9C4A0)',
             color: '#6E4A26',
@@ -81,7 +81,7 @@ function CandidateCard({
       {/* Job */}
       {candidate.job && (
         <p className="text-xs mb-2 truncate" style={{ color: '#C19265' }}>
-          📌 {candidate.job.title}
+         {candidate.job.title}
         </p>
       )}
 
@@ -146,7 +146,7 @@ function CandidateCard({
   )
 }
 
-// ─── Kanban Column ────────────────────────────────────────────────────────────
+// Kanban Column 
 
 function KanbanColumn({
   stage,
@@ -164,11 +164,11 @@ function KanbanColumn({
   const [isDragOver, setIsDragOver] = useState(false)
 
   return (
-    <div className="flex-shrink-0 w-64 flex flex-col">
+    <div className="shrink-0 w-64 flex flex-col">
       {/* Column header */}
       <div className="flex items-center gap-2 mb-3 px-1">
         <div
-          className="w-2.5 h-2.5 rounded-full flex-shrink-0"
+          className="w-2.5 h-2.5 rounded-full shrink-0"
           style={{ background: stage.color }}
         />
         <span className="font-semibold text-sm flex-1" style={{ color: '#3D2B1A' }}>
@@ -214,7 +214,7 @@ function KanbanColumn({
   )
 }
 
-// ─── Main Page ────────────────────────────────────────────────────────────────
+// Main Page 
 
 export default function KanbanPage() {
   const [candidates, setCandidates] = useState<Candidate[]>([])
@@ -292,7 +292,7 @@ export default function KanbanPage() {
           {Array.from({ length: 5 }).map((_, i) => (
             <div
               key={i}
-              className="w-64 h-96 rounded-2xl animate-pulse flex-shrink-0"
+              className="w-64 h-96 rounded-2xl animate-pulse shrink-0"
               style={{ background: '#F2E8DC' }}
             />
           ))}
@@ -304,7 +304,7 @@ export default function KanbanPage() {
   return (
     <div className="flex flex-col h-screen overflow-hidden">
       {/* Header */}
-      <div className="px-8 pt-8 pb-0 flex-shrink-0">
+      <div className="px-8 pt-8 pb-0 shrink-0">
         <div className="flex items-center justify-between mb-4">
           <div>
             <h1 className="text-2xl font-bold" style={{ color: '#3D2B1A' }}>

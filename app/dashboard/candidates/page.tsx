@@ -351,7 +351,7 @@ function CandidateModal({
   )
 }
 
-// ─── Delete Modal ─────────────────────────────────────────────────────────────
+// Delete Modal 
 
 function DeleteModal({
   candidate, onClose, onConfirm,
@@ -406,7 +406,7 @@ function DeleteModal({
   )
 }
 
-// ─── Main Page ────────────────────────────────────────────────────────────────
+// Main Page 
 
 export default function CandidatesPage() {
   const [candidates, setCandidates] = useState<Candidate[]>([])
@@ -616,7 +616,7 @@ export default function CandidatesPage() {
                 <div className="p-4 flex items-center gap-4">
                   {/* Avatar */}
                   <div
-                    className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0"
+                    className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold shrink-0"
                     style={{
                       background: 'linear-gradient(135deg, #FCDCC7, #F9C4A0)',
                       color: '#6E4A26',
@@ -685,7 +685,7 @@ export default function CandidatesPage() {
 
                   {/* AI score */}
                   {assessment && (
-                    <div className="flex-shrink-0 flex items-center gap-1.5">
+                    <div className="shrink-0 flex items-center gap-1.5">
                       <div className="relative w-8 h-8">
                         <svg className="w-8 h-8 -rotate-90" viewBox="0 0 32 32">
                           <circle cx="16" cy="16" r="13" fill="none" stroke="#E5D0B8" strokeWidth="3" />
@@ -724,7 +724,7 @@ export default function CandidatesPage() {
                   )}
 
                   {/* Actions */}
-                  <div className="flex items-center gap-1 flex-shrink-0">
+                  <div className="flex items-center gap-1 shrink-0">
                     {c.linkedin_url && (
                       <a
                         href={c.linkedin_url}
@@ -762,7 +762,7 @@ export default function CandidatesPage() {
                   </div>
                 </div>
 
-                {/* Expanded — AI assessment */}
+                {/* Expanded - AI assessment */}
                 {expanded && (
                   <div
                     className="border-t px-4 pb-4 pt-3"

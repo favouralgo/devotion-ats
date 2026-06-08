@@ -27,7 +27,7 @@ const STATUS_STYLES: Record<string, { bg: string; color: string }> = {
   closed: { bg: '#E5D0B8', color: '#6E4A26' },
 }
 
-// ─── Modal ───────────────────────────────────────────────────────────────────
+// Modal for creating/editing a job
 
 function JobModal({
   job,
@@ -299,7 +299,7 @@ function JobModal({
   )
 }
 
-// ─── Delete Confirm Modal ─────────────────────────────────────────────────────
+// Delete Confirm Modal 
 
 function DeleteModal({
   job,
@@ -356,7 +356,7 @@ function DeleteModal({
   )
 }
 
-// ─── Main Page ────────────────────────────────────────────────────────────────
+// Main Page 
 
 export default function JobsPage() {
   const [jobs, setJobs]             = useState<Job[]>([])
@@ -525,7 +525,7 @@ export default function JobsPage() {
                   )}
                 </div>
                 <span
-                  className="ml-2 text-xs px-2.5 py-1 rounded-full font-medium flex-shrink-0"
+                  className="ml-2 text-xs px-2.5 py-1 rounded-full font-medium shrink-0"
                   style={STATUS_STYLES[job.status] ?? STATUS_STYLES.closed}
                 >
                   {job.status}

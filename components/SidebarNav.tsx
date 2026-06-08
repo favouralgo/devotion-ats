@@ -47,7 +47,7 @@ export default function SidebarNav({ profile }: Props) {
 
   return (
     <aside
-      className="flex flex-col transition-all duration-300 border-r flex-shrink-0"
+      className="flex flex-col transition-all duration-300 border-r shrink-0"
       style={{
         width: collapsed ? '72px' : '240px',
         background: '#3D2B1A',
@@ -60,7 +60,7 @@ export default function SidebarNav({ profile }: Props) {
         style={{ borderColor: '#52371C' }}
       >
         <div
-          className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0"
+          className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0"
           style={{ background: 'linear-gradient(135deg, #EF8547, #C19265)' }}
         >
           <Briefcase className="w-4 h-4 text-white" />
@@ -108,7 +108,7 @@ export default function SidebarNav({ profile }: Props) {
                 color: active ? '#F5A472' : '#C8A882',
               }}
             >
-              <Icon className="w-4 h-4 flex-shrink-0" />
+              <Icon className="w-4 h-4 shrink-0" />
               {!collapsed && (
                 <span className="text-sm font-medium">{label}</span>
               )}
@@ -125,7 +125,7 @@ export default function SidebarNav({ profile }: Props) {
             style={{ background: 'rgba(255,255,255,0.05)' }}
           >
             <div
-              className="w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0"
+              className="w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shrink-0"
               style={{
                 background: 'linear-gradient(135deg, #EF8547, #C19265)',
                 color: 'white',
@@ -151,7 +151,7 @@ export default function SidebarNav({ profile }: Props) {
           className="flex items-center gap-3 px-3 py-2.5 rounded-xl w-full transition-all"
           style={{ color: '#9B7A5A', cursor: 'pointer' }}
         >
-          <LogOut className="w-4 h-4 flex-shrink-0" />
+          <LogOut className="w-4 h-4 shrink-0" />
           {!collapsed && <span className="text-sm">Sign out</span>}
         </button>
       </div>

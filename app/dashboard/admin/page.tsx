@@ -16,7 +16,7 @@ interface Profile {
   created_at: string
 }
 
-// ─── User Modal ───────────────────────────────────────────────────────────────
+// User Modal for creating/editing users
 
 function UserModal({
   user,
@@ -101,7 +101,7 @@ function UserModal({
             />
           </div>
 
-          {/* Password — only on create */}
+          {/* Password - only on create */}
           {!user && (
             <div>
               <label className="block text-sm font-semibold mb-1.5" style={{ color: '#6B4E38' }}>
@@ -216,7 +216,7 @@ function UserModal({
   )
 }
 
-// ─── Delete Modal ─────────────────────────────────────────────────────────────
+// Delete Modal 
 
 function DeleteModal({
   user,
@@ -274,7 +274,7 @@ function DeleteModal({
   )
 }
 
-// ─── Main Page ────────────────────────────────────────────────────────────────
+// Main Page 
 
 export default function AdminPage() {
   const [users, setUsers]           = useState<Profile[]>([])
@@ -432,7 +432,7 @@ export default function AdminPage() {
                 {/* User */}
                 <div className="flex items-center gap-3">
                   <div
-                    className="w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0"
+                    className="w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shrink-0"
                     style={{
                       background: user.role === 'admin'
                         ? 'linear-gradient(135deg, #EF8547, #C19265)'
