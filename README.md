@@ -11,9 +11,9 @@ A mini **Applicant Tracking System** to streamline hiring workflows, manage cand
 - **Custom Pipelines** – Drag-and-drop Kanban board for hiring stages (Screening → Interview → Offer → Hired)
 - **Search & Filter** – Find candidates by skills, status, stage, or date
 - **Role-Based Access** – Admin, Hiring Manager, and Interviewer roles
-- **Email Notifications** – Automatic updates to candidates and team members
-- **Resume Storage** – Upload and organize CVs and documents
-- **Internal Notes & Feedback** – Collaborate on candidate evaluations
+- [TO-DO]**Email Notifications** – Automatic updates to candidates and team members
+- [TO-DO]**Resume Storage** – Upload and organize CVs and documents
+- [TO-DO]**Internal Notes & Feedback** – Collaborate on candidate evaluations
 - [TO-DO] **API-First Design** – Easy integration with existing HR tools
 
 ## Tech Stack
