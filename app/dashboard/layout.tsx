@@ -1,6 +1,6 @@
 import { createClient, createAdminClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
-import SidebarNav from '@/components/SidebarNav'
+import DashboardShell from '@/components/DashboardShell'
 
 export default async function DashboardLayout({
   children,
@@ -12,7 +12,6 @@ export default async function DashboardLayout({
 
   if (!user) redirect('/auth/login')
 
-  // Use admin client to bypass RLS for profile fetch
   const adminSupabase = createAdminClient()
   const { data: profile } = await adminSupabase
     .from('profiles')
@@ -21,11 +20,8 @@ export default async function DashboardLayout({
     .single()
 
   return (
-    <div className="flex h-screen overflow-hidden" style={{ background: '#FAF5F0' }}>
-      <SidebarNav profile={profile} />
-      <main className="flex-1 overflow-auto">
-        {children}
-      </main>
-    </div>
+    <DashboardShell profile={profile}>
+      {children}
+    </DashboardShell>
   )
 }

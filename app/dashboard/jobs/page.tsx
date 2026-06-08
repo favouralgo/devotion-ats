@@ -120,7 +120,7 @@ function JobModal({
           </div>
 
           {/* Department + Location */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-semibold mb-1.5" style={{ color: '#6B4E38' }}>
                 Department
@@ -150,7 +150,7 @@ function JobModal({
           </div>
 
           {/* Type + Status */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-semibold mb-1.5" style={{ color: '#6B4E38' }}>
                 Employment Type
@@ -222,7 +222,7 @@ function JobModal({
           </div>
 
           {/* Salary */}
-          <div className="grid grid-cols-3 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             <div>
               <label className="block text-sm font-semibold mb-1.5" style={{ color: '#6B4E38' }}>
                 Min Salary
@@ -417,11 +417,11 @@ export default function JobsPage() {
   })
 
   return (
-    <div className="p-8 max-w-6xl mx-auto">
+    <div className="p-4 sm:p-6 lg:p-8 max-w-6xl mx-auto">
       {/* Header */}
-      <div className="flex items-center justify-between mb-8">
+      <div className="flex items-center justify-between mb-6 sm:mb-8">
         <div>
-          <h1 className="text-3xl font-bold" style={{ color: '#3D2B1A' }}>
+          <h1 className="text-2xl sm:text-3xl font-bold" style={{ color: '#3D2B1A' }}>
             Jobs
           </h1>
           <p className="text-sm mt-1" style={{ color: '#9B8070' }}>
@@ -430,19 +430,21 @@ export default function JobsPage() {
         </div>
         <button
           onClick={() => { setEditJob(null); setShowModal(true) }}
-          className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold text-white"
+          className="flex items-center gap-2 px-3 sm:px-5 py-2.5 rounded-xl text-sm font-semibold text-white shrink-0"
           style={{
             background: 'linear-gradient(135deg, #EF8547, #C19265)',
             boxShadow: '0 4px 12px rgba(169,116,68,0.3)',
+            cursor: 'pointer',
           }}
         >
-          <Plus className="w-4 h-4" /> Post Job
+          <Plus className="w-4 h-4" />
+          <span className="hidden sm:inline">Post Job</span>
         </button>
       </div>
 
       {/* Filters */}
-      <div className="flex flex-wrap gap-3 mb-6">
-        <div className="relative">
+      <div className="flex flex-col sm:flex-row flex-wrap gap-3 mb-6">
+        <div className="relative w-full sm:w-auto">
           <Search
             className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4"
             style={{ color: '#9B8070' }}
@@ -451,21 +453,22 @@ export default function JobsPage() {
             value={search}
             onChange={e => setSearch(e.target.value)}
             placeholder="Search jobs..."
-            className="pl-10 pr-4 py-2.5 rounded-xl text-sm outline-none w-64"
+            className="pl-10 pr-4 py-2.5 rounded-xl text-sm outline-none w-full sm:w-64"
             style={{ border: '1.5px solid #E5D0B8', background: 'white', color: '#3D2B1A' }}
           />
         </div>
 
-        <div className="flex gap-2">
+        <div className="flex flex-wrap gap-2">
           {['all', 'open', 'paused', 'closed'].map(s => (
             <button
               key={s}
               onClick={() => setStatus(s)}
-              className="px-4 py-2 rounded-xl text-sm font-medium transition-all"
+              className="px-3 sm:px-4 py-2 rounded-xl text-sm font-medium transition-all"
               style={{
                 background: statusFilter === s ? '#EF8547' : 'white',
                 color: statusFilter === s ? 'white' : '#6B4E38',
                 border: `1.5px solid ${statusFilter === s ? '#EF8547' : '#E5D0B8'}`,
+                cursor: 'pointer',
               }}
             >
               {s.charAt(0).toUpperCase() + s.slice(1)}

@@ -333,12 +333,12 @@ export default function AdminPage() {
   const customers = users.filter(u => u.role === 'customer')
 
   return (
-    <div className="p-8 max-w-4xl mx-auto">
+    <div className="p-4 sm:p-6 lg:p-8 max-w-4xl mx-auto">
       {/* Header */}
-      <div className="flex items-center justify-between mb-8">
+      <div className="flex items-center justify-between mb-6 sm:mb-8">
         <div>
           <h1
-            className="text-3xl font-bold flex items-center gap-3"
+            className="text-2xl sm:text-3xl font-bold flex items-center gap-3"
             style={{ color: '#3D2B1A' }}
           >
             <Shield className="w-7 h-7" style={{ color: '#EF8547' }} />
@@ -350,19 +350,20 @@ export default function AdminPage() {
         </div>
         <button
           onClick={() => { setEditUser(null); setShowModal(true) }}
-          className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold text-white"
+          className="flex items-center gap-2 px-3 sm:px-5 py-2.5 rounded-xl text-sm font-semibold text-white shrink-0"
           style={{
             background: 'linear-gradient(135deg, #EF8547, #C19265)',
             boxShadow: '0 4px 12px rgba(169,116,68,0.3)',
             cursor: 'pointer',
           }}
         >
-          <Plus className="w-4 h-4" /> Create Account
+          <Plus className="w-4 h-4" />
+          <span className="hidden sm:inline">Create Account</span>
         </button>
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-3 gap-4 mb-8">
+      <div className="grid grid-cols-3 gap-3 sm:gap-4 mb-6 sm:mb-8">
         {[
           { label: 'Total Accounts', value: users.length,     icon: Users,     color: '#EF8547', bg: '#FEEEE3' },
           { label: 'Admins',         value: admins.length,    icon: Crown,     color: '#A97444', bg: '#F2E8DC' },
@@ -370,16 +371,16 @@ export default function AdminPage() {
         ].map(({ label, value, icon: Icon, color, bg }) => (
           <div
             key={label}
-            className="rounded-2xl border p-5"
+            className="rounded-2xl border p-3 sm:p-5"
             style={{ background: 'white', borderColor: '#E5D0B8' }}
           >
             <div
-              className="w-9 h-9 rounded-xl flex items-center justify-center mb-3"
+              className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl flex items-center justify-center mb-2 sm:mb-3"
               style={{ background: bg }}
             >
               <Icon className="w-4 h-4" style={{ color }} />
             </div>
-            <p className="text-2xl font-bold" style={{ color: '#3D2B1A' }}>{value}</p>
+            <p className="text-xl sm:text-2xl font-bold" style={{ color: '#3D2B1A' }}>{value}</p>
             <p className="text-xs mt-0.5" style={{ color: '#9B8070' }}>{label}</p>
           </div>
         ))}
@@ -401,9 +402,9 @@ export default function AdminPage() {
           className="rounded-2xl border overflow-hidden"
           style={{ borderColor: '#E5D0B8' }}
         >
-          {/* Table header */}
+          {/* Table header — desktop only */}
           <div
-            className="px-5 py-3 border-b grid grid-cols-5 gap-4"
+            className="hidden sm:grid px-5 py-3 border-b grid-cols-5 gap-4"
             style={{ background: '#FAF5F0', borderColor: '#E5D0B8' }}
           >
             {['User', 'Role', 'Company', 'Joined', ''].map(h => (
@@ -426,11 +427,11 @@ export default function AdminPage() {
             users.map(user => (
               <div
                 key={user.id}
-                className="px-5 py-4 border-b last:border-b-0 grid grid-cols-5 gap-4 items-center group"
+                className="px-4 sm:px-5 py-3 sm:py-4 border-b last:border-b-0 flex sm:grid sm:grid-cols-5 items-center gap-3 sm:gap-4 group"
                 style={{ background: 'white', borderColor: '#F2E8DC' }}
               >
                 {/* User */}
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-3 flex-1 min-w-0">
                   <div
                     className="w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shrink-0"
                     style={{
@@ -454,7 +455,7 @@ export default function AdminPage() {
 
                 {/* Role */}
                 <span
-                  className="text-xs px-2.5 py-1 rounded-full font-medium w-fit"
+                  className="text-xs px-2.5 py-1 rounded-full font-medium shrink-0 w-fit"
                   style={
                     user.role === 'admin'
                       ? { background: '#FEEEE3', color: '#9C421B' }
@@ -464,29 +465,29 @@ export default function AdminPage() {
                   {user.role === 'admin' ? 'Admin' : 'Customer'}
                 </span>
 
-                {/* Company */}
-                <p className="text-sm truncate" style={{ color: '#6B4E38' }}>
+                {/* Company — desktop only */}
+                <p className="hidden sm:block text-sm truncate" style={{ color: '#6B4E38' }}>
                   {user.company_name || '—'}
                 </p>
 
-                {/* Joined */}
-                <p className="text-xs" style={{ color: '#9B8070' }}>
+                {/* Joined — desktop only */}
+                <p className="hidden sm:block text-xs" style={{ color: '#9B8070' }}>
                   {formatDistanceToNow(new Date(user.created_at), { addSuffix: true })}
                 </p>
 
-                {/* Actions */}
-                <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                {/* Actions — always visible on mobile, hover-reveal on desktop */}
+                <div className="flex items-center gap-1 shrink-0 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity">
                   <button
                     onClick={() => { setEditUser(user); setShowModal(true) }}
                     className="p-1.5 rounded-lg"
-                    style={{ color: '#6B4E38', background: '#F2E8DC' }}
+                    style={{ color: '#6B4E38', background: '#F2E8DC', cursor: 'pointer' }}
                   >
                     <Pencil className="w-3.5 h-3.5" />
                   </button>
                   <button
                     onClick={() => setDeleteUser(user)}
                     className="p-1.5 rounded-lg"
-                    style={{ color: '#9C421B', background: '#FEEEE3' }}
+                    style={{ color: '#9C421B', background: '#FEEEE3', cursor: 'pointer' }}
                   >
                     <Trash2 className="w-3.5 h-3.5" />
                   </button>

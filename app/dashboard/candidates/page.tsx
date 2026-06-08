@@ -139,7 +139,7 @@ function CandidateModal({
           </div>
 
           {/* Email + Phone */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-semibold mb-1.5" style={{ color: '#6B4E38' }}>
                 Email
@@ -181,7 +181,7 @@ function CandidateModal({
           </div>
 
           {/* Current Position + Company */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-semibold mb-1.5" style={{ color: '#6B4E38' }}>
                 Current Position
@@ -209,7 +209,7 @@ function CandidateModal({
           </div>
 
           {/* Years experience + Source */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-semibold mb-1.5" style={{ color: '#6B4E38' }}>
                 Years of Experience
@@ -257,7 +257,7 @@ function CandidateModal({
           </div>
 
           {/* Job + Stage */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-semibold mb-1.5" style={{ color: '#6B4E38' }}>
                 Assign to Job
@@ -519,11 +519,11 @@ export default function CandidatesPage() {
   })
 
   return (
-    <div className="p-8 max-w-6xl mx-auto">
+    <div className="p-4 sm:p-6 lg:p-8 max-w-6xl mx-auto">
       {/* Header */}
-      <div className="flex items-center justify-between mb-8">
+      <div className="flex items-center justify-between mb-6 sm:mb-8">
         <div>
-          <h1 className="text-3xl font-bold" style={{ color: '#3D2B1A' }}>
+          <h1 className="text-2xl sm:text-3xl font-bold" style={{ color: '#3D2B1A' }}>
             Candidates
           </h1>
           <p className="text-sm mt-1" style={{ color: '#9B8070' }}>
@@ -532,19 +532,21 @@ export default function CandidatesPage() {
         </div>
         <button
           onClick={() => { setEdit(null); setShowModal(true) }}
-          className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold text-white"
+          className="flex items-center gap-2 px-3 sm:px-5 py-2.5 rounded-xl text-sm font-semibold text-white shrink-0"
           style={{
             background: 'linear-gradient(135deg, #EF8547, #C19265)',
             boxShadow: '0 4px 12px rgba(169,116,68,0.3)',
+            cursor: 'pointer',
           }}
         >
-          <Plus className="w-4 h-4" /> Add Candidate
+          <Plus className="w-4 h-4" />
+          <span className="hidden sm:inline">Add Candidate</span>
         </button>
       </div>
 
       {/* Filters */}
-      <div className="flex flex-wrap gap-3 mb-6">
-        <div className="relative">
+      <div className="flex flex-col sm:flex-row flex-wrap gap-3 mb-6">
+        <div className="relative w-full sm:w-auto">
           <Search
             className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4"
             style={{ color: '#9B8070' }}
@@ -553,14 +555,14 @@ export default function CandidatesPage() {
             value={search}
             onChange={e => setSearch(e.target.value)}
             placeholder="Search candidates..."
-            className="pl-10 pr-4 py-2.5 rounded-xl text-sm outline-none w-64"
+            className="pl-10 pr-4 py-2.5 rounded-xl text-sm outline-none w-full sm:w-64"
             style={{ border: '1.5px solid #E5D0B8', background: 'white', color: '#3D2B1A' }}
           />
         </div>
         <select
           value={jobFilter}
           onChange={e => setJobFilter(e.target.value)}
-          className="px-4 py-2.5 rounded-xl text-sm outline-none"
+          className="px-4 py-2.5 rounded-xl text-sm outline-none w-full sm:w-auto"
           style={{ border: '1.5px solid #E5D0B8', background: 'white', color: '#6B4E38' }}
         >
           <option value="all">All Jobs</option>
@@ -613,7 +615,7 @@ export default function CandidatesPage() {
                 style={{ background: 'white', borderColor: '#E5D0B8' }}
               >
                 {/* Row */}
-                <div className="p-4 flex items-center gap-4">
+                <div className="p-3 sm:p-4 flex items-center gap-3 sm:gap-4">
                   {/* Avatar */}
                   <div
                     className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold shrink-0"
@@ -710,7 +712,7 @@ export default function CandidatesPage() {
                     <button
                       onClick={() => handleAssess(c.id)}
                       disabled={c.assessing}
-                      className="flex items-center gap-1 px-2 py-1 rounded-lg text-xs font-medium transition-all"
+                      className="hidden sm:flex items-center gap-1 px-2 py-1 rounded-lg text-xs font-medium transition-all shrink-0"
                       style={{
                         background: c.assessing ? '#F2E8DC' : '#FFF5D6',
                         color: c.assessing ? '#9B8070' : '#8B5E32',

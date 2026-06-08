@@ -78,11 +78,11 @@ export default async function DashboardPage() {
   const recentCandidates = [...candidates].reverse().slice(0, 5)
 
   return (
-    <div className="p-8 max-w-6xl mx-auto">
+    <div className="p-4 sm:p-6 lg:p-8 max-w-6xl mx-auto">
       {/* Header */}
-      <div className="mb-8">
+      <div className="mb-6 sm:mb-8">
         <h1
-          className="text-3xl font-bold mb-1"
+          className="text-2xl sm:text-3xl font-bold mb-1"
           style={{ color: '#3D2B1A' }}
         >
           {(() => {
@@ -96,7 +96,7 @@ export default async function DashboardPage() {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6 sm:mb-8">
         {stats.map(({ label, value, sub, icon: Icon, color, bg }) => (
           <div
             key={label}
@@ -123,7 +123,7 @@ export default async function DashboardPage() {
       </div>
 
       {/* Recent Jobs + Candidates */}
-      <div className="grid lg:grid-cols-2 gap-6 mb-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 mb-6">
         {/* Recent Jobs */}
         <div
           className="rounded-2xl border p-6"
