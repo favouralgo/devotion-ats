@@ -655,7 +655,7 @@ export default function CandidatesPage() {
                     </p>
                     {c.job && (
                       <p className="text-xs mt-0.5" style={{ color: '#C19265' }}>
-                        📌 {c.job.title}
+                         {c.job.title}
                       </p>
                     )}
                   </div>
@@ -804,7 +804,7 @@ export default function CandidatesPage() {
                         <div className="grid grid-cols-2 gap-3">
                           <div>
                             <p className="text-xs font-semibold mb-1.5" style={{ color: '#6E4A26' }}>
-                              ✅ Strengths
+                              Strengths
                             </p>
                             {assessment.strengths?.map((s, i) => (
                               <p key={i} className="text-xs mb-1" style={{ color: '#6B4E38' }}>
@@ -814,7 +814,7 @@ export default function CandidatesPage() {
                           </div>
                           <div>
                             <p className="text-xs font-semibold mb-1.5" style={{ color: '#9C421B' }}>
-                              ⚠️ Gaps
+                              Gaps
                             </p>
                             {assessment.gaps?.map((g, i) => (
                               <p key={i} className="text-xs mb-1" style={{ color: '#6B4E38' }}>
