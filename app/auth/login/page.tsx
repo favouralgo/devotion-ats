@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 import { Eye, EyeOff, Briefcase } from 'lucide-react'
 
 export default function LoginPage() {
@@ -222,9 +223,18 @@ export default function LoginPage() {
             </button>
           </form>
 
-          <p className="mt-8 text-xs text-center" style={{ color: '#9B8070' }}>
-            Don't have access? Contact your administrator.
-          </p>
+          <div className="mt-8 text-center space-y-2">
+            <Link
+              href="/auth/forgot-password"
+              className="block text-xs font-medium"
+              style={{ color: '#EF8547' }}
+            >
+              Forgot your password?
+            </Link>
+            <p className="text-xs" style={{ color: '#9B8070' }}>
+              Don't have access? Contact your administrator.
+            </p>
+          </div>
         </div>
       </div>
     </div>
