@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import {
   Plus, Shield, Users, Trash2,
-  Pencil, Crown, Building2,
+  Pencil, Crown, Building2, Eye, EyeOff,
 } from 'lucide-react'
 import { formatDistanceToNow } from 'date-fns'
 
@@ -34,8 +34,9 @@ function UserModal({
     role:         user?.role         ?? 'customer',
     company_name: user?.company_name ?? '',
   })
-  const [saving, setSaving]   = useState(false)
-  const [error, setError]     = useState('')
+  const [saving, setSaving]       = useState(false)
+  const [error, setError]         = useState('')
+  const [showPassword, setShowPassword] = useState(false)
 
   const input = 'w-full px-4 py-2.5 rounded-xl text-sm outline-none transition-all'
   const inputStyle = { border: '1.5px solid #E5D0B8', background: 'white', color: '#3D2B1A' }
@@ -106,17 +107,27 @@ function UserModal({
               <label className="block text-sm font-semibold mb-1.5" style={{ color: '#6B4E38' }}>
                 Password *
               </label>
-              <input
-                type="password"
-                className={input}
-                style={inputStyle}
-                value={form.password}
-                onChange={e => setForm({ ...form, password: e.target.value })}
-                onFocus={focus} onBlur={blur}
-                required
-                minLength={8}
-                placeholder="Min 8 characters"
-              />
+              <div className="relative">
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  className={input}
+                  style={{ ...inputStyle, paddingRight: '2.5rem' }}
+                  value={form.password}
+                  onChange={e => setForm({ ...form, password: e.target.value })}
+                  onFocus={focus} onBlur={blur}
+                  required
+                  minLength={8}
+                  placeholder="Min 8 characters"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(p => !p)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2"
+                  style={{ color: '#9B8070', cursor: 'pointer' }}
+                >
+                  {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                </button>
+              </div>
             </div>
           )}
 
