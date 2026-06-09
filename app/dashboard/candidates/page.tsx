@@ -431,7 +431,9 @@ export default function CandidatesPage() {
     ])
     setCandidates(await cRes.json() || [])
     setJobs(await jRes.json() || [])
-    setStages(await sRes.json() || [])
+    const rawStages: Stage[] = await sRes.json() || []
+    const seen = new Set<string>()
+    setStages(rawStages.filter(s => { const k = s.name.toLowerCase(); if (seen.has(k)) return false; seen.add(k); return true }))
     setLoading(false)
   }
 

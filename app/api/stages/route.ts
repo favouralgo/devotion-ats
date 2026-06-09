@@ -29,7 +29,7 @@ export async function GET() {
     .order('position')
 
   if (profile?.role === 'superadmin') {
-    // sees everything
+    // sees all stages
   } else if (profile?.role === 'admin') {
     query = query.eq('organisation_id', profile.organisation_id)
   } else {
@@ -38,23 +38,46 @@ export async function GET() {
 
   let { data } = await query
 
-  // Create default stages if none exist
+  // Create default stages if none exist for this user/org
   if (!data || data.length === 0) {
-    const defaults = [
-      { owner_id: user.id, organisation_id: profile?.organisation_id ?? null, name: 'Applied',   color: '#C8A882', position: 0 },
-      { owner_id: user.id, organisation_id: profile?.organisation_id ?? null, name: 'Screening', color: '#F5A472', position: 1 },
-      { owner_id: user.id, organisation_id: profile?.organisation_id ?? null, name: 'Interview', color: '#EF8547', position: 2 },
-      { owner_id: user.id, organisation_id: profile?.organisation_id ?? null, name: 'Technical', color: '#E06828', position: 3 },
-      { owner_id: user.id, organisation_id: profile?.organisation_id ?? null, name: 'Offer',     color: '#FFD970', position: 4 },
-      { owner_id: user.id, organisation_id: profile?.organisation_id ?? null, name: 'Hired',     color: '#8B5E32', position: 5 },
-      { owner_id: user.id, organisation_id: profile?.organisation_id ?? null, name: 'Rejected',  color: '#9B8B7A', position: 6 },
-    ]
-    const { data: created } = await adminSupabase
-      .from('stages')
-      .insert(defaults)
-      .select()
-    data = created
+    // For customers: reuse org-level stages if they already exist
+    if (profile?.role === 'customer' && profile?.organisation_id) {
+      const { data: orgStages } = await adminSupabase
+        .from('stages')
+        .select('*')
+        .eq('organisation_id', profile.organisation_id)
+        .order('position')
+      if (orgStages && orgStages.length > 0) {
+        data = orgStages
+      }
+    }
+
+    if (!data || data.length === 0) {
+      const defaults = [
+        { owner_id: user.id, organisation_id: profile?.organisation_id ?? null, name: 'Applied',   color: '#C8A882', position: 0 },
+        { owner_id: user.id, organisation_id: profile?.organisation_id ?? null, name: 'Screening', color: '#F5A472', position: 1 },
+        { owner_id: user.id, organisation_id: profile?.organisation_id ?? null, name: 'Interview', color: '#EF8547', position: 2 },
+        { owner_id: user.id, organisation_id: profile?.organisation_id ?? null, name: 'Technical', color: '#E06828', position: 3 },
+        { owner_id: user.id, organisation_id: profile?.organisation_id ?? null, name: 'Offer',     color: '#FFD970', position: 4 },
+        { owner_id: user.id, organisation_id: profile?.organisation_id ?? null, name: 'Hired',     color: '#8B5E32', position: 5 },
+        { owner_id: user.id, organisation_id: profile?.organisation_id ?? null, name: 'Rejected',  color: '#9B8B7A', position: 6 },
+      ]
+      const { data: created } = await adminSupabase
+        .from('stages')
+        .insert(defaults)
+        .select()
+      data = created
+    }
   }
 
-  return NextResponse.json(data || [])
+  // Deduplicate by name (lowest position wins) to handle any pre-existing DB duplicates
+  const seen = new Set<string>()
+  const deduped = (data || []).filter(s => {
+    const key = (s.name as string).toLowerCase()
+    if (seen.has(key)) return false
+    seen.add(key)
+    return true
+  })
+
+  return NextResponse.json(deduped)
 }

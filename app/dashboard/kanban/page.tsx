@@ -233,7 +233,9 @@ export default function KanbanPage() {
       fetch('/api/jobs'),
     ])
     setCandidates(await cRes.json() || [])
-    setStages(await sRes.json() || [])
+    const rawStages: Stage[] = await sRes.json() || []
+    const seen = new Set<string>()
+    setStages(rawStages.filter(s => { const k = s.name.toLowerCase(); if (seen.has(k)) return false; seen.add(k); return true }))
     setJobs(await jRes.json() || [])
     setLoading(false)
   }
